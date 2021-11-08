@@ -1,0 +1,8 @@
+{
+  "name": "dashboard-app-backend",
+  "version": "1.0.0",
+  "description": "Backend for the dashboard application",
+  "main": "server.js",
+  "author": "Sam44323",
+  "license": "MIT"
+}
