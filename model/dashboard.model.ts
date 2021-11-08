@@ -20,6 +20,9 @@ export class CollegeDescription {
   @prop({ required: true })
   public state_name!: string;
 
+  @prop({ required: true, default: 0 })
+  public no_students!: number;
+
   @prop({ required: true, default: "" })
   public country_name!: string;
 
