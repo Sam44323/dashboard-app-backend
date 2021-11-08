@@ -1,4 +1,3 @@
-// write codes to create a server with express using typescript
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
