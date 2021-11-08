@@ -5,6 +5,11 @@
   "main": "server.js",
   "author": "Sam44323",
   "license": "MIT",
+  "scripts": {
+    "start": "node ./dist/server.js",
+    "build": "tsc -p .",
+    "dev": "nodemon server.js"
+  },
   "dependencies": {
     "@types/express": "^4.17.13",
     "@types/node": "^16.11.6",
