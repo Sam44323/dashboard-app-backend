@@ -41,10 +41,10 @@ export class StudentDescription {
   public name!: string;
 
   @prop({ required: true })
-  public batch_date!: string;
+  public batch_date!: number;
 
   @prop({ required: true })
-  public college_id!: ObjectId;
+  public college_id!: any;
 
   @prop({ required: true, default: [""] })
   public skills!: string[];
