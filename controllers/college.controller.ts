@@ -27,36 +27,27 @@ export const getCollege = async (
   req: express.Request,
   res: express.Response
 ) => {
-  let queryName: {
-    name: "college_name" | "state_name" | "no_students" | "courses_offered";
-    value: any;
-  } = {} as any;
   const query = req.query;
-  if (query.college) {
-    queryName = {
-      name: "college_name",
-      value: query.name,
-    };
+  let response;
+  console.log(query);
+  if (query.name) {
+    response = await CollegeDescriptionModel.find({
+      college_name: `${query.name}`,
+    });
   } else if (query.location) {
-    queryName = {
-      name: "state_name",
-      value: query.location,
-    };
+    response = await CollegeDescriptionModel.find({
+      city_name: `${query.location}`,
+    });
   } else if (query.students) {
-    queryName = {
-      name: "no_students",
-      value: query.students,
-    };
+    response = await CollegeDescriptionModel.find({
+      no_students: query.students as any,
+    });
   } else if (query.course) {
-    queryName = {
-      name: "courses_offered",
-      value: query.course,
-    };
+    response = await CollegeDescriptionModel.find({
+      courses_offered: `${query.course}`,
+    });
   }
-  const { name, value } = queryName;
-  const response = await CollegeDescriptionModel.find({
-    college_name: "College 1",
-  });
+
   console.log(response);
 
   res.status(200).json({
