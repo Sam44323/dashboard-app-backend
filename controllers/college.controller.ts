@@ -48,7 +48,6 @@ export const getCollege = async (
       value: query.course,
     };
   }
-  console.log(queryName);
   res.status(200).json({
     message: "working!",
   });
