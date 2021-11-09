@@ -22,3 +22,34 @@ export const getColleges = async (
     });
   }
 };
+
+export const getCollege = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  let queryName: {
+    name: string;
+    value: any;
+  } = {} as any;
+  const query = req.query;
+  if (query.location) {
+    queryName = {
+      name: "state_name",
+      value: query.location,
+    };
+  } else if (query.students) {
+    queryName = {
+      name: "no_students",
+      value: query.students,
+    };
+  } else if (query.course) {
+    queryName = {
+      name: "courses_offered",
+      value: query.course,
+    };
+  }
+  console.log(queryName);
+  res.status(200).json({
+    message: "working!",
+  });
+};
