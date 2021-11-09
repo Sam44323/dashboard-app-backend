@@ -28,11 +28,16 @@ export const getCollege = async (
   res: express.Response
 ) => {
   let queryName: {
-    name: string;
+    name: "college_name" | "state_name" | "no_students" | "courses_offered";
     value: any;
   } = {} as any;
   const query = req.query;
-  if (query.location) {
+  if (query.college) {
+    queryName = {
+      name: "college_name",
+      value: query.name,
+    };
+  } else if (query.location) {
     queryName = {
       name: "state_name",
       value: query.location,
@@ -48,6 +53,12 @@ export const getCollege = async (
       value: query.course,
     };
   }
+  const { name, value } = queryName;
+  const response = await CollegeDescriptionModel.find({
+    college_name: "College 1",
+  });
+  console.log(response);
+
   res.status(200).json({
     message: "working!",
   });
