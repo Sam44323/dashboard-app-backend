@@ -29,28 +29,34 @@ export const getCollege = async (
 ) => {
   const query = req.query;
   let response;
-  console.log(query);
-  if (query.name) {
-    response = await CollegeDescriptionModel.find({
-      college_name: `${query.name}`,
+  try {
+    if (query.name) {
+      response = await CollegeDescriptionModel.find({
+        college_name: `${query.name}`,
+      });
+    } else if (query.location) {
+      response = await CollegeDescriptionModel.find({
+        city_name: `${query.location}`,
+      });
+    } else if (query.students) {
+      response = await CollegeDescriptionModel.find({
+        no_students: query.students as any,
+      });
+    } else if (query.course) {
+      response = await CollegeDescriptionModel.find({
+        courses_offered: `${query.course}`,
+      });
+    }
+
+    console.log(response);
+
+    res.status(200).json({
+      message: "working!",
     });
-  } else if (query.location) {
-    response = await CollegeDescriptionModel.find({
-      city_name: `${query.location}`,
-    });
-  } else if (query.students) {
-    response = await CollegeDescriptionModel.find({
-      no_students: query.students as any,
-    });
-  } else if (query.course) {
-    response = await CollegeDescriptionModel.find({
-      courses_offered: `${query.course}`,
+  } catch (err: any) {
+    logger.error(`Can't fetch the college at this moment: ${err.message}`);
+    res.status(500).json({
+      message: "Can't get the college at this moment!",
     });
   }
-
-  console.log(response);
-
-  res.status(200).json({
-    message: "working!",
-  });
 };
