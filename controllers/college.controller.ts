@@ -30,24 +30,14 @@ export const getCollege = async (
   const query = req.query;
   let response;
   try {
-    if (query.name) {
-      response = await CollegeDescriptionModel.find({
-        college_name: `${query.name}`,
-      });
-    } else if (query.location) {
-      response = await CollegeDescriptionModel.find({
-        city_name: `${query.location}`,
-      });
-    } else if (query.students) {
-      response = await CollegeDescriptionModel.find({
-        no_students: query.students as any,
-      });
-    } else if (query.course) {
-      response = await CollegeDescriptionModel.find({
-        courses_offered: `${query.course}`,
-      });
-    }
-
+    response = await CollegeDescriptionModel.find({
+      $or: [
+        { college_name: `${query.name}` },
+        { city_name: `${query.location}` },
+        { no_students: { $lte: query.students as any } },
+        { courses_offered: `${query.course}` },
+      ],
+    });
     console.log(response);
 
     res.status(200).json({
