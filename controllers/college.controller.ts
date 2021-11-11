@@ -29,18 +29,16 @@ export const getCollege = async (
 ) => {
   const query = req.query;
   let response;
+
   try {
     response = await CollegeDescriptionModel.find({
       $or: [
-        { college_name: `${query.name}` },
         { state_name: `${query.location}` },
         { no_students: { $lte: query.students as any } },
         { courses_offered: `${query.course}` },
       ],
     });
-
     console.log(response);
-
     res.status(200).json({
       message: "working!",
       colleges: response,
