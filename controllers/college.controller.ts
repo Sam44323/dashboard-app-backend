@@ -33,11 +33,12 @@ export const getCollege = async (
     response = await CollegeDescriptionModel.find({
       $or: [
         { college_name: `${query.name}` },
-        { city_name: `${query.location}` },
+        { state_name: `${query.location}` },
         { no_students: { $lte: query.students as any } },
         { courses_offered: `${query.course}` },
       ],
     });
+
     console.log(response);
 
     res.status(200).json({
