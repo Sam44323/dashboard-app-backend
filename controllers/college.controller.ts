@@ -42,6 +42,7 @@ export const getCollege = async (
 
     res.status(200).json({
       message: "working!",
+      colleges: response,
     });
   } catch (err: any) {
     logger.error(`Can't fetch the college at this moment: ${err.message}`);
