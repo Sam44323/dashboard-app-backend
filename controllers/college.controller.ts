@@ -33,6 +33,7 @@ export const getCollege = async (
   try {
     response = await CollegeDescriptionModel.find({
       $or: [
+        { _id: query.id },
         { state_name: `${query.location}` },
         { no_students: { $lte: query.students as any } },
         { courses_offered: `${query.course}` },
