@@ -22,6 +22,7 @@ _Want to contribute? Fork the repo and run the following commands to add your sh
 ```
 yarn // installing the dependencies
 yarn dev // for running the dev server
+yarn build // for creating the build version for the code
 
 ```
 
