@@ -39,7 +39,7 @@ export const getCollege = async (
         { courses_offered: `${query.course}` },
       ],
     });
-    console.log(response);
+
     res.status(200).json({
       message: "working!",
       colleges: response,
