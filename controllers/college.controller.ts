@@ -1,8 +1,5 @@
 import express from "express";
-import {
-  CollegeDescriptionModel,
-  StudentDescriptionModel,
-} from "../model/dashboard.model";
+import { CollegeDescriptionModel } from "../model/dashboard.model";
 import logger from "../utils/logger";
 
 export const getColleges = async (
